@@ -4,7 +4,9 @@
 
 ## Languages
 
+aa = Afarca
 ab = Abhazca
+abb = Bankon
 ace = Açece
 ady = Adıgece
 af = Afrikaans
@@ -16,18 +18,30 @@ as = Assamca
 ast = Asturyanca
 az = Azerice
 ba = Başkurtça
+bal = Beluçça
 bas = Basaa
+bax = Bamun
+bba = Baatonum
+bbj = Ghomala
+bci = Baoule
 be = Belarusça
+beb = Bamvele
+bfd = Bafut
 bg = Bulgarca
+bkm = Kom
 bm = Bambara
 bn = Bengalce
+bnm = Batanga
 bo = Tibetçe
 br = Bretonca
+bri = Mokpwe
 bs = Boşnakça
+bum = Bulu
 bxr = Buryatça
 byv = Medumba
 ca = Katalanca
 cak = Kakçikelce
+cdo = Doğu Min Çincesi
 ckb = Soranice
 cnh = Hakha Chin
 co = Korsikaca
@@ -37,6 +51,7 @@ cv = Çuvaşça
 cy = Galce
 da = Danca
 dag = Dagbani
+dar = Dargince
 de = Almanca
 dsb = Aşağı Sorbca
 dv = Maldivce
@@ -61,6 +76,7 @@ gn = Guarani
 gom = Goan Konkani
 gu-IN = Güceratça
 guc = Wayuunaiki
+gya = Kuzeybatı Gbaya
 ha = Hausaca
 he = İbranice
 hi = Hintçe
@@ -138,6 +154,7 @@ or = Odia
 os = Osetçe
 pa-IN = Pencapça
 pap-AW = Papiamento (Aruba)
+pcm = Nijer Pidgin İngilizcesi
 pl = Lehçe
 ps = Peştuca
 pt = Portekizce
@@ -198,6 +215,7 @@ vi = Vietnamca
 vmw = Emakhuwa
 vot = Votic
 wep = Vestfalya dili
+wes = Kamerun Pidgin
 wo = Volofça
 xh = Xhosa
 yi = Yidiş
@@ -215,12 +233,6 @@ zza = Zazaca
 
 ## Layout
 
-speak = Konuş
-speak-now = Şimdi konuşun
-datasets = Veri kümeleri
-languages = Diller
-about = Hakkında
-partner = İş Ortaklığı
 profile = Profil
 help = Yardım
 contact = İletişim
@@ -240,7 +252,6 @@ privacy-info = Bilgilerinizi özenle koruyacağımıza söz veriyoruz. <privacyL
 return-to-cv = Common Voice’a geri dön
 email-input =
     .label = E-posta
-submit-form-action = Gönder
 loading = Yükleniyor…
 email-opt-in-info = Hedef hatırlatmaları, ilerleme durumum ve Common Voice ile ilgili bültenler gibi e-postalar almak istiyorum.
 email-opt-in-info-title = Common Voice e-posta listesine katılın
@@ -251,7 +262,7 @@ not-available-abbreviation = Yok
 
 ## Donate banner
 
-# Text wrapped in <mark></mark> will have a white background. 
+# Text wrapped in <mark></mark> will have a white background.
 donate-banner-cta = <mark>Yardımınıza</mark><br/><mark>ihtiyacımız var!</mark>
 # Text wrapped in <strong></strong> will be rendered on bold font
 donate-banner-cta-explanation = Yaptığımız işe güvenen 100’den fazla dil topluluğu için veri kümelerini barındırmak ve platformu geliştirmek yılda neredeyse bir milyon dolara mal oluyor. <strong>Açık ve kapsayıcı verilere değer veriyorsanız bugün bağış yapın!</strong>

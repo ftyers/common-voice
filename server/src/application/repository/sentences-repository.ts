@@ -53,6 +53,10 @@ const insertSentenceTransaction = async (
     sentence.variant_id,
     O.getOrElse(() => null)
   )
+  const domain_ids = pipe(
+    sentence.domain_ids,
+    O.getOrElse(() => [] as number[])
+  )
 
   try {
     await conn.beginTransaction()
@@ -72,7 +76,7 @@ const insertSentenceTransaction = async (
       [sentenceId, sentence.client_id, variant_id]
     )
 
-    for (const domainId of sentence.domain_ids ?? []) {
+    for (const domainId of domain_ids) {
       await conn.query(
         `
           INSERT INTO sentence_domains(sentence_id, domain_id)
@@ -91,13 +95,19 @@ const insertSentenceTransaction = async (
   }
 }
 
+type BulkSentenceOptions = {
+  isUsed: boolean
+  isValidated: boolean
+}
+
 const insertBulkSentencesTransaction = async (
   db: Mysql,
-  sentences: SentenceSubmission[]
+  sentences: SentenceSubmission[],
+  options: BulkSentenceOptions = { isUsed: true, isValidated: true }
 ) => {
   const sentence_values: any = []
   const sentence_metadata_values: any = []
-  const sentence_domain_values: any = []
+  const sentence_domain_values: [string, number][] = []
 
   sentences.forEach(submission => {
     const sentenceId = createSentenceId(
@@ -109,12 +119,29 @@ const insertBulkSentencesTransaction = async (
       submission.sentence,
       submission.source,
       submission.locale_id,
-      1,
-      1,
+      options.isUsed ? 1 : 0, // is_used = 1
+      options.isValidated ? 1 : 0, // is_validated = 1
     ])
-    sentence_metadata_values.push([sentenceId, submission.client_id])
-    if (submission.domain_ids?.length > 0)
-      sentence_domain_values.push([sentenceId, submission.domain_ids[0]])
+
+    const variant_id = pipe(
+      submission.variant_id,
+      O.getOrElse(() => null)
+    )
+
+    sentence_metadata_values.push([
+      sentenceId,
+      submission.client_id,
+      variant_id,
+    ])
+
+    const domain_ids = pipe(
+      submission.domain_ids,
+      O.getOrElse(() => [] as number[])
+    )
+
+    if (domain_ids.length > 0) {
+      domain_ids.forEach(id => sentence_domain_values.push([sentenceId, id]))
+    }
   })
 
   const conn = await mysql2.createConnection(db.getMysqlOptions())
@@ -142,7 +169,7 @@ const insertBulkSentencesTransaction = async (
       )
       await conn.query(
         `
-          INSERT IGNORE INTO sentence_metadata(sentence_id, client_id)
+          INSERT IGNORE INTO sentence_metadata(sentence_id, client_id, variant_id)
           VALUES ?
        `,
         [sentences_metadata_batch]
@@ -207,14 +234,18 @@ const saveSentence =
   }
 
 export type InsertBulkSentences = (
-  sentenceSubmissions: SentenceSubmission[]
+  sentenceSubmissions: SentenceSubmission[],
+  options?: BulkSentenceOptions
 ) => TE.TaskEither<Error, void>
 
 const insertBulkSentences =
   (db: Mysql) =>
-  (sentenceSubmissions: SentenceSubmission[]): TE.TaskEither<Error, void> => {
+  (
+    sentenceSubmissions: SentenceSubmission[],
+    options = { isUsed: true, isValidated: true }
+  ): TE.TaskEither<Error, void> => {
     return TE.tryCatch(
-      () => insertBulkSentencesTransaction(db, sentenceSubmissions),
+      () => insertBulkSentencesTransaction(db, sentenceSubmissions, options),
       (err: Error) => err
     )
   }
@@ -411,7 +442,8 @@ export const findVariantSentences: FindVariantSentences = (
     )
   )
 export const saveSentenceInDb: SaveSentence = saveSentence(db)
-export const insertBulkSentencesIntoDb = insertBulkSentences(db)
+export const insertBulkSentencesIntoDb: InsertBulkSentences =
+  insertBulkSentences(db)
 export const insertSentenceVoteIntoDb = insertSentenceVote(db)
 export const findSentencesForReviewInDb: FindSentencesForReview =
   findSentencesForReview(db)
