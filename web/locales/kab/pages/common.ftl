@@ -4,7 +4,9 @@
 
 ## Languages
 
+aa = Tafarit
 ab = Tabxazit
+abb = Bankon
 ace = Acehnese
 ady = Tadyigit
 af = Tafrikant
@@ -16,7 +18,9 @@ as = Tasamizt
 ast = Tasturit
 az = Tazerbiǧanit
 ba = Tabackirit
+bal = Baluči
 bas = Basaa
+bax = Bamun
 be = Tabilarusit
 bg = Tabulgarit
 bm = Tabumbrit
@@ -102,6 +106,7 @@ lt = Talitwaynit
 ltg = Latgalian
 lv = Talitunit
 mai = Maïthili
+mbo = Mbo
 mdf = Mukca
 mg = Tamalgact
 mhr = Tamarit n uzaɣar
@@ -114,6 +119,7 @@ mr = Tamaṛatit
 mrj = Tamarit n udrar
 ms = Tamalizit
 mt = Tamalṭit
+mxu = Mada
 my = Taburmisit
 myv = Erzya
 nan-tw = Taiwanese (Minnan)
@@ -123,6 +129,7 @@ ne-NP = Tanipalit
 nia = Nias
 nl = Tahulandit
 nn-NO = Tanuṛvijt Nynorsk
+nqo = NKo
 nr = IsiNdebele (Anẓul)
 nso = Ṣutu n Ugafa
 nyn = Nyankole
@@ -138,6 +145,7 @@ pt = Tapuṛṭugit
 quc = K'iche'
 quy = Quechua Chanka
 qvi = Kicwa
+rif = Tarifit
 rm-sursilv = Rumanc Sursilvan
 rm-vallader = Taṛumancit n wadda
 ro = Taṛumanit
@@ -151,6 +159,7 @@ sco = Ikusit
 sd = Tasinḍit
 sdh = Takurdit n unẓul
 shi = Tacelḥit
+shn = Shan
 si = Tasinhalit
 sk = Tasluvakt
 skr = Saraiki
@@ -207,12 +216,6 @@ zza = Zaza
 
 ## Layout
 
-speak = Mmeslay
-speak-now = Mmeslay tura
-datasets = Tagrumma n yisefka
-languages = Tutlayin
-about = Anwa-aɣ
-partner = Amendid
 profile = Amaɣnu
 help = Tallelt
 contact = Nermes-aɣ-d
@@ -232,7 +235,6 @@ privacy-info = Ad neḍmen aḥraz n talɣut-nwen. Ɣaṛ ugar n yisallen deg <p
 return-to-cv = Uɣal ɣer Common Voice
 email-input =
     .label = Imayl
-submit-form-action = Azen
 loading = Asali…
 email-opt-in-info = Bɣiɣ ad d-ṭṭfeɣ imaylen am yismektiyen n yiswiyen, anerni-iw deg yileqman akked talɣuyin yeεnan Common Voice.
 email-opt-in-info-title = Jerred deg tebdert n unermes Common Voice
@@ -243,7 +245,7 @@ not-available-abbreviation = N/A
 
 ## Donate banner
 
-# Text wrapped in <mark></mark> will have a white background. 
+# Text wrapped in <mark></mark> will have a white background.
 donate-banner-cta = <mark>Nesra</mark><br/><mark>tallalt-ik!</mark>
 # Text wrapped in <mark></mark> will have a white background.
 languages-donate-banner-cta = <mark>Aseqdec n CV i</mark><br/><mark>yinadiyen-ik?</mark>

@@ -5,7 +5,8 @@ write-instruction = In <icon></icon> sin út it publike domein tafoegje
 write-page-subtitle = Sinnen dy’t hjir bydroegen wurde sille tafoege wurde oan in publyklik beskikbere cc-0 lisinsearre dataset.
 sentence =
     .label = Sin
-sentence-input-value = Fier hjir jo publike domeinsin yn
+sentence-input-placeholder = Fier hjir jo publike domeinsin yn
+small-batch-sentence-input-placeholder = Fier hjir jo publike domeinsinnen yn
 citation-input-placeholder = Ferwizing nei de boarne fan jo sin (fereaske)
 citation =
     .label = Sitaat
@@ -13,6 +14,7 @@ sc-write-submit-confirm =
     Ik befêstigje dat dizze sin <wikipediaLink>publyk domein</wikipediaLink> is en
     ik tastimming haw om dizze op te laden.
 sc-review-write-title = Hokker sinnen kin ik tafoegje?
+sc-review-small-batch-title = Meardere sinnen tafoegje
 new-sentence-rule-1 = <noCopyright>Gjin auteursrjocht</noCopyright>-beheiningen (<cc0>cc-0</cc0>)
 new-sentence-rule-2 = Minder as 15 wurden
 new-sentence-rule-3 = Brûk de krekte grammatika
@@ -21,6 +23,7 @@ new-sentence-rule-5 = Gjin sifers en spesjale tekens
 new-sentence-rule-6 = Gjin frjemde tekens
 new-sentence-rule-7 = Foegje de krekte boarnefermelding ta
 new-sentence-rule-8 = Yn it beste gefal natuerlik en gemoedlik (it soe maklik wêze moatte om de sin te lêzen)
+login-instruction-multiple-sentences = <loginLink>Meld jo oan</loginLink> of <loginLink>skriuw jo yn</loginLink> om meardere sinnen ta te foegjen
 how-to-cite = Hoe sitearje ik?
 how-to-cite-explanation-bold = Sitearje mei in URL-keppeling of de folsleine namme fan it wurk.
 how-to-cite-explanation = As it jo eigen wurden binne, sis dan gewoan <italicizedText>‘Selssitaat’</italicizedText>. Wy moatte witte wêr’t jo dizze ynhâld fûn hawwe, sadat wy kontrolearje kinne dat it yn it publike domein is en gjin auteursrjochtbeheiningen jilde. Sjoch foar mear ynformaasje oer sitearjen ús <guidelinesLink>Rjochtlineside</guidelinesLink>.
@@ -30,9 +33,11 @@ add-sentence-success = 1 sin sammele
 add-sentence-error = Flater by it tafoegjen fan sin
 required-field = Folje dit fjild yn.
 single-sentence-submission = Yntsjinjen fan ien sin
+small-batch-sentence-submission = Yntsjinjen fan sinnen yn in lytse batch
 bulk-sentence-submission = Bulkyntsjinning fan sinnen
 single-sentence = Losse sin
-bulk-sentences = Bulksinnen
+small-batch-sentence = Lytse batch
+bulk-sentence = Bulkbatch
 sentence-domain-combobox-label = Sinsdomein
 sentence-domain-select-placeholder = Selektearje maksimaal trije domeinen
 # Sentence Domain dropdown option
@@ -93,3 +98,52 @@ file-invalid-type = Unjildich bestân
 file-too-large = Bestân is te grut
 file-too-small = Bestân is te lyts
 too-many-files = Tefolle bestannen
+
+## SMALL BATCH SUBMISSION
+
+# <icon></icon> will be replaced with an icon that represents writing a sentence
+small-batch-instruction = <icon></icon> Meardere sinnen út it publike domein tafoegje
+multiple-sentences-error = Jo kinne net meardere sinnen tafoegje foar ien ynstjoering
+exceeds-small-batch-limit-error = Kin net mear as 1000 sinnen yntsjinje
+# $retryLimit represents the amount of time in minutes a user has to wait to retry an upload
+rate-limit-toast-message-minutes =
+    { $retryLimit ->
+        [one] Oer de tagongslimyt. Probearje it opnij oer 1 minút
+       *[other] Oer de tagongslimyt. Probearje it opnij oer { $retryLimit } minuten
+    }
+# $retryLimit represents the amount of time in seconds a user has to wait to retry an upload
+rate-limit-toast-message-seconds =
+    { $retryLimit ->
+        [one] Oer de tagongslimyt. Probearje it opnij oer 1 minút
+       *[other] Oer de tagongslimyt. Probearje it opnij oer { $retryLimit } minuten
+    }
+# $retryLimit represents the amount of time in minutes a user has to wait to retry an upload
+rate-limit-message-minutes =
+    { $retryLimit ->
+        [one] Jo hawwe de yntsjinningslimyt foar dizze side berikt. Wachtsje 1 minút eardat jo noch in sin ynfiere. Tank foar jo geduld!
+       *[other] Jo hawwe de yntsjinningslimyt foar dizze side berikt. Wachtsje { $retryLimit } minuten eardat jo noch in sin ynfiere. Tank foar jo geduld!
+    }
+# $retryLimit represents the amount of time in seconds a user has to wait to retry an upload
+rate-limit-message-seconds =
+    { $retryLimit ->
+        [one] Jo hawwe de yntsjinningslimyt foar dizze side berikt. Wachtsje 1 minút eardat jo noch in sin ynfiere. Tank foar jo geduld!
+       *[other] Jo hawwe de yntsjinningslimyt foar dizze side berikt. Wachtsje { $retryLimit } minuten eardat jo noch in sin ynfiere. Tank foar jo geduld!
+    }
+# $uploadedSentences represents the number of sentences accepted from the small batch submission, $totalSentences represents the total number of sentences in the small batch submission
+add-small-batch-success =
+    { $totalSentences ->
+        [one] { $uploadedSentences } fan 1 sin sammele
+       *[other] { $uploadedSentences } fan { $totalSentences } sinnen sammele
+    }
+# $uploadedSentences represents the number of sentences accepted from the small batch submission, $totalSentences represents the total number of sentences in the small batch submission
+small-batch-response-message =
+    { $totalSentences ->
+        [one] { $uploadedSentences } fan 1 sin sammele. Klik <downloadLink>hjir</downloadLink> om ôfwêzen sinnen te downloaden.
+       *[other] { $uploadedSentences } fan { $totalSentences } sinnen sammele. Klik <downloadLink>hjir</downloadLink> om ôfwêzen sinnen te downloaden.
+    }
+small-batch-sentences-rule-1 = Folgje de rjochtlinen út ‘Hokker sinnen kin ik tafoegje?’
+small-batch-sentences-rule-2 = Ien sin per rigel tafoegje
+small-batch-sentences-rule-3 = Skied sinnen yn ien rigel troch ien kear op ‘Enter’ of ‘Return’ te drukken
+small-batch-sentences-rule-4 = Foegje oant tûzen sinnen ta
+small-batch-sentences-rule-5 = Alle sinnen moatte itselde domein hawwe
+small-batch-sentences-rule-6 = Alle sinnen moatte deselde boarnefermelding hawwe

@@ -5,7 +5,8 @@ write-instruction = Een <icon></icon> zin uit het publieke domein toevoegen
 write-page-subtitle = Zinnen die hier zijn bijgedragen worden toegevoegd aan een openbaar beschikbare cc-0 gelicenseerde dataset.
 sentence =
     .label = Zin
-sentence-input-value = Voer hier uw publieke domeinzin in
+sentence-input-placeholder = Voer hier uw publieke domeinzin in
+small-batch-sentence-input-placeholder = Voer hier uw publieke domeinzinnen in
 citation-input-placeholder = Verwijzing naar de bron van uw zin (vereist)
 citation =
     .label = Citaat
@@ -13,6 +14,7 @@ sc-write-submit-confirm =
     Ik bevestig dat deze zin <wikipediaLink>publiek domein</wikipediaLink> is en
     ik toestemming heb om deze te uploaden.
 sc-review-write-title = Welke zinnen kan ik toevoegen?
+sc-review-small-batch-title = Meerdere zinnen toevoegen
 new-sentence-rule-1 = <noCopyright>Geen copyright</noCopyright>-beperkingen (<cc0>cc-0</cc0>)
 new-sentence-rule-2 = Minder dan 15 woorden
 new-sentence-rule-3 = Gebruik de juiste grammatica
@@ -21,6 +23,7 @@ new-sentence-rule-5 = Geen cijfers en speciale tekens
 new-sentence-rule-6 = Geen vreemde tekens
 new-sentence-rule-7 = Voeg de juiste bronvermelding toe
 new-sentence-rule-8 = In het beste geval natuurlijk en gemoedelijk (het zou gemakkelijk moeten zijn om de zin te lezen)
+login-instruction-multiple-sentences = <loginLink>Meld u aan</loginLink> of <loginLink>schrijf u in</loginLink> om meerdere zinnen toe te voegen
 how-to-cite = Hoe citeer ik?
 how-to-cite-explanation-bold = Citeer met een URL-koppeling of de volledige naam van het werk.
 how-to-cite-explanation = Als het uw eigen woorden zijn, zeg dan gewoon <italicizedText>‘Zelfcitaat’</italicizedText>. We moeten weten waar u deze inhoud hebt gevonden, zodat we kunnen controleren of deze zich in het publieke domein bevindt en of er geen auteursrechtelijke beperkingen van toepassing zijn. Zie voor meer informatie over citeren onze <guidelinesLink>Richtlijnenpagina</guidelinesLink>.
@@ -30,9 +33,11 @@ add-sentence-success = 1 zin verzameld
 add-sentence-error = Fout bij toevoegen van zin
 required-field = Vul dit veld in.
 single-sentence-submission = Indienen van één zin
+small-batch-sentence-submission = Indienen van zinnen in een kleine batch
 bulk-sentence-submission = Bulkindiening van zinnen
 single-sentence = Losse zin
-bulk-sentences = Bulkzinnen
+small-batch-sentence = Kleine batch
+bulk-sentence = Bulkbatch
 sentence-domain-combobox-label = Zinsdomein
 sentence-domain-select-placeholder = Selecteer maximaal drie domeinen
 # Sentence Domain dropdown option
@@ -93,3 +98,52 @@ file-invalid-type = Ongeldig bestand
 file-too-large = Bestand is te groot
 file-too-small = Bestand is te klein
 too-many-files = Te veel bestanden
+
+## SMALL BATCH SUBMISSION
+
+# <icon></icon> will be replaced with an icon that represents writing a sentence
+small-batch-instruction = <icon></icon> Meerdere zinnen uit het publieke domein toevoegen
+multiple-sentences-error = U kunt niet meerdere zinnen toevoegen voor een enkele inzending
+exceeds-small-batch-limit-error = Kan niet meer dan 1000 zinnen indienen
+# $retryLimit represents the amount of time in minutes a user has to wait to retry an upload
+rate-limit-toast-message-minutes =
+    { $retryLimit ->
+        [one] Toegangslimiet overschreden. Probeer het opnieuw over 1 minuut
+       *[other] Toegangslimiet overschreden. Probeer het opnieuw over { $retryLimit } minuten
+    }
+# $retryLimit represents the amount of time in seconds a user has to wait to retry an upload
+rate-limit-toast-message-seconds =
+    { $retryLimit ->
+        [one] Toegangslimiet overschreden. Probeer het opnieuw over 1 seconde
+       *[other] Toegangslimiet overschreden. Probeer het opnieuw over { $retryLimit } seconden
+    }
+# $retryLimit represents the amount of time in minutes a user has to wait to retry an upload
+rate-limit-message-minutes =
+    { $retryLimit ->
+        [one] U hebt de indieningslimiet voor deze pagina bereikt. Wacht 1 minuut voordat u nog een zin invoert. Bedankt voor uw geduld!
+       *[other] U hebt de indieningslimiet voor deze pagina bereikt. Wacht { $retryLimit } minuten voordat u nog een zin invoert. Bedankt voor uw geduld!
+    }
+# $retryLimit represents the amount of time in seconds a user has to wait to retry an upload
+rate-limit-message-seconds =
+    { $retryLimit ->
+        [one] U hebt de indieningslimiet voor deze pagina bereikt. Wacht 1 seconde voordat u nog een zin invoert. Bedankt voor uw geduld!
+       *[other] U hebt de indieningslimiet voor deze pagina bereikt. Wacht { $retryLimit } seconden voordat u nog een zin invoert. Bedankt voor uw geduld!
+    }
+# $uploadedSentences represents the number of sentences accepted from the small batch submission, $totalSentences represents the total number of sentences in the small batch submission
+add-small-batch-success =
+    { $totalSentences ->
+        [one] { $uploadedSentences } van 1 zin verzameld
+       *[other] { $uploadedSentences } van { $totalSentences } zinnen verzameld
+    }
+# $uploadedSentences represents the number of sentences accepted from the small batch submission, $totalSentences represents the total number of sentences in the small batch submission
+small-batch-response-message =
+    { $totalSentences ->
+        [one] { $uploadedSentences } van 1 zin verzameld. Klik <downloadLink>hier</downloadLink> om afgewezen zinnen te downloaden.
+       *[other] { $uploadedSentences } van { $totalSentences } zinnen verzameld. Klik <downloadLink>hier</downloadLink> om afgewezen zinnen te downloaden.
+    }
+small-batch-sentences-rule-1 = Volg de richtlijnen uit ‘Welke zinnen kan ik toevoegen?’
+small-batch-sentences-rule-2 = Eén zin per regel toevoegen
+small-batch-sentences-rule-3 = Scheid zinnen in losse regels door eenmaal op ‘Enter’ of ‘Return’ te drukken
+small-batch-sentences-rule-4 = Voeg tot duizend zinnen toe
+small-batch-sentences-rule-5 = Alle zinnen moeten hetzelfde domein hebben
+small-batch-sentences-rule-6 = Alle zinnen moeten dezelfde bronvermelding hebben

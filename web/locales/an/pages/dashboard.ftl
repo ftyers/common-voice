@@ -10,7 +10,7 @@ todays-validated-progress = Progreso de hue d'os fragmentos validaus pa Common V
 stats = Estatisticas
 awards = Premios
 you = Tu
-everyone = Totz
+everyone = Toz
 contribution-activity = Actividat de colaboración
 top-contributors = Principals colaboradors
 recorded-clips = Fragmentos gravaus
@@ -18,8 +18,8 @@ validated-clips = Fragmentos validaus
 total-approved = Total aprebau
 overall-accuracy = Precisión cheneral
 set-visibility = Establir visibilidat
-visibility-explainer = Esta configuración controla la visibilidat d'a tuya taula de clasificación. Quan ye amagau, lo tuyo progreso será privau. Esto significa que tanto la tuya imachen, nombre d'usuario y progreso no amaneixerán en a tabla de clasificación. Tiene en cuenta que l'actualización d'a taula de clasificación tarda ~{ $minutes } minutos pa completar los cambios.
-visibility-overlay-note = Nota: Quan s'estableix como 'Visible', la configuración se puede cambiar dende la <profileLink>pachina de perfil </profileLink>
+visibility-explainer = Esta configuración controla la visibilidat d'a tuya taula de clasificación. Cuan ye amagau, lo tuyo progreso será privau. Esto significa que tanto la tuya imachen, nombre d'usuario y progreso no amaneixerán en a tabla de clasificación. Tiene en cuenta que l'actualización d'a taula de clasificación tarda ~{ $minutes } minutos pa completar los cambios.
+visibility-overlay-note = Nota: Cuan s'estableix como 'Visible', la configuración se puede cambiar dende la <profileLink>pachina de perfil </profileLink>
 show-ranking = Amostrar lo mío abance
 
 ## Custom Goals
@@ -28,7 +28,7 @@ get-started-goals = Principiar los míos obchectivos
 create-custom-goal = Crear un obchectivo personalizau
 goal-type = Qué tipo d'obchectivo quiers crear?
 both-speak-and-listen = Los dos
-both-speak-and-listen-long = Los dos (charrar y escuitar)
+both-speak-and-listen-long = Los dos (charrar y ascuitar)
 daily-goal = Obchectivo diario
 weekly-goal = Obchectivo semanal
 easy-difficulty = Facil
@@ -67,9 +67,9 @@ activity-needed-calculation-plural =
         [11] de { $periodMonths } meses
        *[other] de { $periodMonths } meses
     }
-how-many-per-day = Excelent! Quántas gravacions a lo día?
-how-many-a-week = Excelent! Quántas gravacions a la semana?
-which-goal-type = Quiers charrar, escuitar u las dos?
+how-many-per-day = Excelent! Cuántas gravacions a lo día?
+how-many-a-week = Excelent! Cuántas gravacions a la semana?
+which-goal-type = Quiers charrar, ascuitar u las dos?
 receiving-emails-info = Agora mesmo lo tiens configurau pa recibir correus electronicos como recordatorios d'obchectivos, actualizacions de progreso y boletines d'información sobre Common Voice
 not-receiving-emails-info = La tuya configuración actual indica que <bold>NO recibes</bold> correus con recordatorios d'obchectivos, actualizacions de progreso ni boletines de noticias de Common Voice
 n-clips-pluralized =
@@ -92,12 +92,12 @@ goal-share-text = He creyau un obchectivo personal pa dar voz a #CommonVoice -- 
 weekly-goal-created = S'ha creyau lo tuyo obchectivo semanal
 daily-goal-created = S'ha creyau lo tuyo obchectivo diario
 track-progress = Sigue aquí lo progreso y en a pachina d'estatisticas.
-return-to-edit-goal = Siempre puetz tornar a editar l'obchectivo.
+return-to-edit-goal = Siempre puez tornar a editar l'obchectivo.
 share-goal = Compartir lo mío obchectivo
 
 ## Goals
 
-streaks = Fiques
+streaks = Rachas
 days =
     { $count ->
         [one] Día
