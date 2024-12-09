@@ -1,1 +1,0 @@
-sentence-collection = مجموعه‌ جمله

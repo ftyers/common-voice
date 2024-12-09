@@ -7,11 +7,12 @@ import * as fs from 'fs'
 const TRANSLATED_MIN_PROGRESS = 0.6
 const DEFAULT_TARGET_SENTENCE_COUNT = 5000
 
-const localeMessagesPath = path.join(
+const LOCALE_MESSAGES_PATH = path.join(
   __dirname,
   '../../../../../',
   'web',
-  'locales'
+  'locales',
+  'common-voice'
 )
 
 type Variant = {
@@ -177,6 +178,86 @@ const VARIANTS: Variant[] = [
     variant_name: 'ⵜⴰⵔⵉⴼⵉⵜ (Tarifit)',
     variant_token: 'zgh-rif',
   },
+  {
+    locale_name: 'tui',
+    variant_name: 'Ɓaŋwere (Tupuri Bangwere)',
+    variant_token: 'tui-bangwere',
+  },
+  {
+    locale_name: 'tui',
+    variant_name: 'Ɓaŋgɔ̀ (Tupuri Banggo)',
+    variant_token: 'tui-banggo',
+  },
+  {
+    locale_name: 'tn',
+    variant_name: 'Central Setswana (Sehurutshe, Sengwaketse, Serolong)',
+    variant_token: 'tn-central',
+  },
+  {
+    locale_name: 'tn',
+    variant_name: 'Northern Setswana (Sengwato, Setawana, Sekwena, Selete)',
+    variant_token: 'tn-northern',
+  },
+  {
+    locale_name: 'tn',
+    variant_name: 'Eastern Setswana (Sekgatla, Setlokwa)',
+    variant_token: 'tn-eastern',
+  },
+  {
+    locale_name: 'tn',
+    variant_name: 'Southern Setswana (Setlhaping, Setlharo)',
+    variant_token: 'tn-southern',
+  },
+  {
+    locale_name: 'ady',
+    variant_name: 'Адыгабзэ (Кирил, Урысый)',
+    variant_token: 'ady-RU',
+  },
+  {
+    locale_name: 'ady',
+    variant_name: 'Адыгабзэ (Кирил, Тырку - Batı Çerkesçesi)',
+    variant_token: 'ady-Cyrl-TR',
+  },
+  {
+    locale_name: 'ady',
+    variant_name: 'Adığabze (Latin, Turk, transliteratse - Batı Çerkesçesi)',
+    variant_token: 'ady-Latn-TR-t-ady-cyrl',
+  },
+  {
+    locale_name: 'ady',
+    variant_name: 'Адыгабзэ (Кирил, Иордание)',
+    variant_token: 'ady-Cyrl-JOR',
+  },
+  {
+    locale_name: 'ady',
+    variant_name: 'Адыгабзэ (Кирил, Сирие)',
+    variant_token: 'ady-Cyrl-SY',
+  },
+  {
+    locale_name: 'kbd',
+    variant_name: 'Адыгэбзэ (Къэбэрдей, Кирил, Урысей)',
+    variant_token: 'kbd-RU',
+  },
+  {
+    locale_name: 'kbd',
+    variant_name: 'Адыгэбзэ (Къэбэрдей, Кирил, Тырку - Doğu Çerkesçesi)',
+    variant_token: 'kbd-Cyrl-TR',
+  },
+  {
+    locale_name: 'kbd',
+    variant_name: 'Adığebze (Kabardey, Latin, Turk, transliteratse - Doğu Çerkesçesi)',
+    variant_token: 'kbd-Latn-TR-t-kbd-cyrl',
+  },
+  {
+    locale_name: 'kbd',
+    variant_name: 'Адыгэбзэ (Къэбэрдей, Кирил, Иордание)',
+    variant_token: 'kbd-Cyrl-JOR',
+  },
+  {
+    locale_name: 'kbd',
+    variant_name: 'Адыгэбзэ (Къэбэрдей, Кирил, Сирие)',
+    variant_token: 'kbd-Cyrl-SY',
+  },
 ]
 
 type Locale = {
@@ -195,7 +276,7 @@ const db = getMySQLInstance()
 
 const saveToMessages = (languages: any) => {
   const messagesPath = path.join(
-    localeMessagesPath,
+    LOCALE_MESSAGES_PATH,
     'en',
     'pages',
     'common.ftl'
@@ -215,13 +296,13 @@ const saveToMessages = (languages: any) => {
 }
 
 const buildLocaleNativeNameMapping: any = () => {
-  const locales = fs.readdirSync(localeMessagesPath)
+  const locales = fs.readdirSync(LOCALE_MESSAGES_PATH)
   const nativeNames: {
     [code: string]: string
   } = {}
   for (const locale of locales) {
     const messagesPath = path.join(
-      localeMessagesPath,
+      LOCALE_MESSAGES_PATH,
       locale,
       'pages',
       'common.ftl'
@@ -266,7 +347,7 @@ const getMinimalTranslationResources = (locale: string) => {
 
   try {
     contributePages = readFilesInDirectory(
-      path.join(localeMessagesPath, locale, 'pages', 'contribute')
+      path.join(LOCALE_MESSAGES_PATH, locale, 'pages', 'contribute')
     )
     contributePagesResources = contributePages.map(page =>
       parse(page.content, {})
@@ -328,7 +409,7 @@ const fetchPontoonLanguages = async (): Promise<any[]> => {
 
 const fetchExistingLanguages = async () => {
   const [existinglanguages] = await db.query(`
-      select t.locale_id as has_clips, l.id, l.name, l.target_sentence_count as target_sentence_count, count(1) as total_sentence_count
+      select t.locale_id as has_clips, l.id, l.name, l.target_sentence_count as target_sentence_count, count(1) as total_sentence_count, is_translated
       from locales l
       left join sentences s on s.locale_id = l.id
       left join (select c.locale_id from clips c group by c.locale_id) t on t.locale_id = s.locale_id
@@ -349,18 +430,18 @@ export async function importLocales() {
   if (locales) {
     console.log('Fetching existing languages')
 
-    const existingLangauges = await fetchExistingLanguages()
+    const existingLanguages = await fetchExistingLanguages()
 
-    console.log(`${existingLangauges.length} Existing Languages`)
+    console.log(`${existingLanguages.length} Existing Languages`)
 
-    const languagesWithClips = existingLangauges.reduce(
+    const languagesWithClips = existingLanguages.reduce(
       (obj: any, language: any) => {
         if (language.has_clips) obj[language.name] = true
         return obj
       }
     )
 
-    const allLanguages = existingLangauges.reduce((obj: any, language: any) => {
+    const allLanguages = existingLanguages.reduce((obj: any, language: any) => {
       obj[language.name] = {
         ...language,
         hasEnoughSentences:
@@ -370,9 +451,11 @@ export async function importLocales() {
     }, {})
 
     const newLanguageData = locales.reduce((obj, language) => {
-      // if a lang has clips, or has the required translations,
+      // if a lang has clips, is already translated, or has the required translations,
       // consider it translated
       const isTranslated = languagesWithClips[language.code]
+        ? 1
+        : allLanguages[language.code]?.is_translated === 1
         ? 1
         : language.hasRequiredTranslations
         ? 1

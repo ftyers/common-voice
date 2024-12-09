@@ -8,6 +8,22 @@
     & .cards-and-instruction {
         height: 100%;
 
+        & .instruction {
+            margin: 2vh auto;
+
+            span {
+                display: flex;
+
+                svg {
+                    margin-inline: 8px;
+
+                    path {
+                        fill: var(--light-purple);
+                    }
+                }
+            }
+        }
+
         & .cards-and-guidelines {
             display: flex;
 
@@ -150,12 +166,21 @@
                 color: var(--black);
                 cursor: pointer;
 
+                [dir='rtl'] & {
+                    margin-left: 20px;
+                    margin-right: unset;
+                }
+
                 @media (--sm-down) {
                     width: 100px;
                 }
 
                 svg {
                     margin-right: 12px;
+
+                    [dir='rtl'] & {
+                        margin-left: 12px;
+                    }
                 }
 
                 & {
